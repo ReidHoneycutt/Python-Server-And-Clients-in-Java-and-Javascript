@@ -1,4 +1,3 @@
-# the client has to connect first before it starts searching for hands
 import socket
 
 
