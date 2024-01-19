@@ -1,6 +1,8 @@
+# This is a example of a server in python and several clients
+
 # server.py 
-- spins up a server
-- sends a packet of the integer 10 in byte code to any client that connects to it
+- creates a server
+- sends a packet to a client that connects to it
 
 # client.js
 To write a JavaScript client that connects to this server and receives the packet sent by the /send(client_socket) function, you need to use Node.js with the net module, as browser-based JavaScript does not support direct TCP socket connections due to security reasons.
