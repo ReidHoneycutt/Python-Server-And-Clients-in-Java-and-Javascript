@@ -1,19 +1,19 @@
 import asyncio
 import websockets
-import os
-import time
 
-async def send_random_data(websocket, path):
-    # Wait for a few seconds
-    await asyncio.sleep(3)  # Waits for 3 seconds
+# coroutine to handle communication with connected client
+async def handle_client(websocket, _path):
+    # Create string to send to client
+    message = 'HELLO'
 
-    # sends the message "HELLO"
-    random_bytes = b'HELLO'
+    # Send string to the client
+    await websocket.send(message)
 
-    # Send the random byte string to the client
-    await websocket.send(random_bytes)
+# Creates a WebSocketServer instance which contains event loop to listen for client connections
+# Upon accepting client connection, websockets automatically invokes 'handle_client' coroutine
+start_server = websockets.serve(handle_client, "127.0.0.1", 8080)
 
-start_server = websockets.serve(send_random_data, "127.0.0.1", 8080)
-
+# Add listener task to event loop
 asyncio.get_event_loop().run_until_complete(start_server)
+
 asyncio.get_event_loop().run_forever()
